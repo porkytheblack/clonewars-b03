@@ -45,7 +45,7 @@ function TopNav() {
   return (
       <NavDropdownContext.Provider value={{active_selection, change_active_selection}}>
           <>
-    <Flex position={"fixed"} zIndex="10" borderBottom={"1px solid rgb(55, 55, 57)"} {...FlexRowCenterCenter} width="100vw" height={"68px"} bg="rgba(25, 28, 31, 0.8)" backdropBlur={"12px"} >
+    <Flex position={"fixed"} zIndex="10" borderBottom={"1px solid rgb(55, 55, 57)"} {...FlexRowCenterCenter} width="100vw" height={"68px"} bg="rgba(25, 28, 31, 0.8)" backdropFilter={"auto"} backdropBlur={"12px"} >
         <Flex padding={["0px 20px", "0px 20px", "0px 20px", "0px 20px", "0px"]} {...FlexRowCenterBetween} width={["100%", "100%", "100%","100%", "80%", "80%"]} >
             <Flex {...FlexRowCenterStart} width="50%" height="100%" >
                 <Logo/>
