@@ -24,6 +24,12 @@ export const FlexColCenterCenter: FlexProps = {
   justifyContent: "center"
 }
 
+export const FlexColCenterBetween: FlexProps = {
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-between"
+}
+
 
 export const FlexColStartStart: FlexProps = {
   flexDirection: "column",

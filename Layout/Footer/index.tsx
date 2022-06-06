@@ -3,6 +3,7 @@ import React from 'react'
 import ReactCountryFlag from 'react-country-flag'
 import SimpleLink from '../../Components/Buttons/SimpleLink'
 import { FlexColCenterStart, FlexColStartStart, FlexRowStartBetween } from '../../Components/Reusables/FlexComponents/FlexConfigs'
+import { get_screen_size } from '../../utils/get_screen_size'
 
 interface f_item {
     title: string,
@@ -64,9 +65,10 @@ const FooterItems: f_item[] = [
 ]
 
 function Footer() {
+    const {isLarge} = get_screen_size()
   return (
     <Flex {...FlexColCenterStart} width="100%" bg="#191919"  padding="30px 30px" >
-        <Grid width="80%" templateColumns={"auto auto auto auto auto auto"} columnGap={"10px"} rowGap="5px" templateRows={"auto auto"} >
+        {!isLarge && <Grid width="80%" templateColumns={"auto auto auto auto auto auto"} columnGap={"10px"} rowGap="5px" templateRows={"auto auto"} >
             {FooterItems.map((item, index) => (
                 <GridItem key={index} rowSpan={item.links.length >= 4 ? 2 : 1 } >
                     <Flex {...FlexColCenterStart} width="100%" textAlign={"left"} >
@@ -81,8 +83,8 @@ function Footer() {
                     </Flex>
                 </GridItem>
             ))}
-        </Grid>
-        <Flex {...FlexRowStartBetween} marginTop="30px" width="80%" >
+        </Grid>}
+        {!isLarge && <Flex {...FlexRowStartBetween} marginTop="30px" width="80%" >
             <ReactCountryFlag countryCode='US'   />
             <Grid width="90%"  templateColumns={"auto auto auto auto auto auto"} templateRows="auto auto" columnGap="5px" >
                 {["Website terms","Legal Agreements","Complaints","Privacy", "Responsible Disclosure Program Policy","UK Modern Slavery Policy","Customer Vulnerability","Data Privacy Statement for Candidates"].map((item, ky)=>(
@@ -91,7 +93,7 @@ function Footer() {
                     </SimpleLink>
                 ))}
             </Grid>
-        </Flex>
+        </Flex>}
         <Flex {...FlexColStartStart} color="rgba(255, 255, 255, 0.6)" marginTop={"40px"} width="80%"  >
             <chakra.p fontSize="12px"  marginBottom={"20px"}  width="100%" textAlign={"left"} >
                 © Revolut Ltd 2022
