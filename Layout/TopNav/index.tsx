@@ -14,6 +14,7 @@ import SimpleDropDownButton from '../../Components/Buttons/SimpleDropDownButton'
 import { get_screen_size } from '../../utils/get_screen_size'
 import IconButton1 from '../../Components/Buttons/IconButton1'
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import MobileDropDown from '../../Components/Menus/MobileDropDown'
 
 
 interface NavContextValue {
@@ -35,11 +36,15 @@ function TopNav() {
     const change_active_selection = (selection: "Personal" | "Business" | "Company")=>{
         set_active_selection(selection)
     }
+    const [is_dropdown_open, set_is_dropdown_open] = useState(false)
 
     const {isLarge} = get_screen_size()
 
+    
+
   return (
       <NavDropdownContext.Provider value={{active_selection, change_active_selection}}>
+          <>
     <Flex position={"fixed"} zIndex="10" borderBottom={"1px solid rgb(55, 55, 57)"} {...FlexRowCenterCenter} width="100vw" height={"68px"} bg="rgba(25, 28, 31, 0.8)" backdropBlur={"12px"} >
         <Flex padding={["0px 20px", "0px 20px", "0px 20px", "0px 20px", "0px"]} {...FlexRowCenterBetween} width={["100%", "100%", "100%","100%", "80%", "80%"]} >
             <Flex {...FlexRowCenterStart} width="50%" height="100%" >
@@ -64,9 +69,14 @@ function TopNav() {
                     Sign In
                 </ActiveButtonWhite>
             </Flex>}
-            {isLarge && <IconButton1 colors={["white", "black"]} bg={["black", "white"]} baseIcon={<HamburgerIcon fontSize={"18px"}  />}  activeIcon={<CloseIcon fontSize={"18px"} />} />}
+            {isLarge && <IconButton1 onClick={()=>{
+                set_is_dropdown_open(!is_dropdown_open)
+            }} colors={["white", "black"]} bg={["black", "white"]} baseIcon={<HamburgerIcon fontSize={"18px"}  />}  activeIcon={<CloseIcon fontSize={"18px"} />} />}
+            {is_dropdown_open && <MobileDropDown/>}
         </Flex>
     </Flex>
+    
+    </>
     </NavDropdownContext.Provider>
   )
 }

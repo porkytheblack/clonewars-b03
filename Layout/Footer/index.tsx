@@ -1,8 +1,10 @@
 import { Flex, Grid, chakra, GridItem } from '@chakra-ui/react'
 import React from 'react'
 import ReactCountryFlag from 'react-country-flag'
+import ArrowLeftButtonAnimated from '../../Components/Buttons/ArrowLeftButtonAnimated'
+import MobileDropDownButton from '../../Components/Buttons/MobileDropDownButton'
 import SimpleLink from '../../Components/Buttons/SimpleLink'
-import { FlexColCenterStart, FlexColStartStart, FlexRowStartBetween } from '../../Components/Reusables/FlexComponents/FlexConfigs'
+import { FlexColCenterStart, FlexColStartBetween, FlexColStartStart, FlexRowStartBetween } from '../../Components/Reusables/FlexComponents/FlexConfigs'
 import { get_screen_size } from '../../utils/get_screen_size'
 
 interface f_item {
@@ -84,6 +86,23 @@ function Footer() {
                 </GridItem>
             ))}
         </Grid>}
+        {isLarge && <Flex {...FlexColStartStart} width="100%" >
+                    {FooterItems.map((item, index) => (
+                        <MobileDropDownButton heading={item.title} links={item.links} key={index} />
+                    ))}
+        </Flex> }
+        {isLarge && <Flex {...FlexColStartBetween} width="100%" marginTop="30px" >
+        <ReactCountryFlag countryCode='US'   />
+        <Flex flexDir={"row"} flexWrap="wrap" alignItems={"center"} justifyContent="flex-start" >
+                    
+        {["Website terms","Legal Agreements","Complaints","Privacy", "Responsible Disclosure Program Policy","UK Modern Slavery Policy","Customer Vulnerability","Data Privacy Statement for Candidates"].map((item, ky)=>(
+                    <ArrowLeftButtonAnimated key={ky} >
+                     {item}
+                    </ArrowLeftButtonAnimated>
+                ))}
+                    
+        </Flex>
+            </Flex>}
         {!isLarge && <Flex {...FlexRowStartBetween} marginTop="30px" width="80%" >
             <ReactCountryFlag countryCode='US'   />
             <Grid width="90%"  templateColumns={"auto auto auto auto auto auto"} templateRows="auto auto" columnGap="5px" >
